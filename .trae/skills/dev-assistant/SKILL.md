@@ -1,0 +1,76 @@
+---
+name: dev-assistant
+description: 用于辅助Java和Python开发的综合技能，包括代码生成、代码分析、项目管理、文档生成、依赖管理和知识点提取等功能
+---
+
+# 综合开发助手技能
+
+## 技能信息
+- **name**: dev-assistant
+- **description**: 辅助Java和Python开发的综合技能
+- **version**: 1.0.0
+- **author**: Developer
+
+## 功能描述
+- 代码生成：生成Java和Python代码
+- 代码分析：分析代码质量和问题
+- 项目管理：管理项目结构和配置
+- 文档生成：生成技术文档
+- 依赖管理：管理项目依赖
+- 知识点提取：提取响应中的主要知识点并生成Markdown格式
+
+## 输入参数
+- **task_type**: 任务类型 (code_generate/code_analyze/project_manage/doc_generate/dependency_manage/knowledge_extract)
+- **language**: 目标语言 (Java/Python，仅适用于代码相关任务)
+- **content**: 任务内容
+- **params**: 额外参数 (根据任务类型不同而变化)
+
+## 输出格式
+- **result**: 任务执行结果
+- **format**: 输出格式
+- **details**: 详细信息
+
+## 示例
+### 代码生成示例
+#### 输入
+```json
+{
+  "task_type": "code_generate",
+  "language": "Java",
+  "content": "创建一个用户服务类，包含CRUD方法",
+  "params": {
+    "class_name": "UserService"
+  }
+}
+```
+
+#### 输出
+```json
+{
+  "result": "public class UserService {\\n    public User createUser(User user) {\\n        // 创建用户逻辑\\n        return user;\\n    }\\n    \\n    public User getUserById(long id) {\\n        // 查询用户逻辑\\n        return null;\\n    }\\n    \\n    public User updateUser(User user) {\\n        // 更新用户逻辑\\n        return user;\\n    }\\n    \\n    public void deleteUser(long id) {\\n        // 删除用户逻辑\\n    }\\n}",
+  "format": "code",
+  "details": "生成了UserService类，包含基本的CRUD方法"
+}
+```
+
+### 知识点提取示例
+#### 输入
+```json
+{
+  "task_type": "knowledge_extract",
+  "content": "Java中的多线程可以通过继承Thread类或实现Runnable接口来实现。线程池可以提高性能，减少线程创建和销毁的开销。常见的线程池包括FixedThreadPool、CachedThreadPool和ScheduledThreadPool。",
+  "params": {
+    "question": "Java多线程的实现方式和线程池类型",
+    "output_language": "中文"
+  }
+}
+```
+
+#### 输出
+```json
+{
+  "result": "# Java多线程知识点\\n\\n## 实现方式\\n- 继承Thread类\\n- 实现Runnable接口\\n\\n## 线程池\\n- **作用**：提高性能，减少线程创建和销毁的开销\\n- **类型**：\\n  - FixedThreadPool\\n  - CachedThreadPool\\n  - ScheduledThreadPool\\n",
+  "format": "markdown",
+  "details": "提取了Java多线程的实现方式和线程池相关知识点"
+}
+```
