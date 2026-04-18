@@ -4,7 +4,7 @@
 
 OpenAI库是OpenAI公司发布的Python SDK，方便开发者通过编程方式调用其产品。目前许多模型服务提供商都兼容OpenAI SDK的调用方式，使其成为AI开发中的重要工具。
 
-<img src="../resources/img/02OpenAI.png" alt="OpenAI库的基础使用" style="max-width: 100%; height: auto;">
+<img src="../../resources/img/02OpenAI.png" alt="OpenAI库的基础使用" style="max-width: 100%; height: auto;">
 
 ## 使用流程
 
