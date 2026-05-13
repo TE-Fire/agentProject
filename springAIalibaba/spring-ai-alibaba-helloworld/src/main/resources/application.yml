@@ -1,0 +1,10 @@
+server:
+  port: 18080
+
+spring:
+  application:
+    name: spring-ai-alibaba-helloworld
+
+  ai:
+    dashscope:
+      api-key: sk-19989917fced445cb313f0cebcb57ee1

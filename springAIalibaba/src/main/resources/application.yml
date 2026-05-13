@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-ai-alibaba
+
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:default}
+
+  ai:
+    # OpenAI 配置
+    openai:
+      api-key: ${OPENAI_API_KEY:your-api-key}
+      base-url: ${OPENAI_BASE_URL:https://api.openai.com/v1}
+    
+    # Ollama 配置（本地运行的开源模型）
+    ollama:
+      base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+      model: ${OLLAMA_MODEL:qwen2:7b}
+
+    # DashScope 配置（阿里云通义千问）
+    dashscope:
+      api-key: ${DASHSCOPE_API_KEY:your-dashscope-api-key}
+
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    com.example.springaialibaba: DEBUG
+    org.springframework.ai: DEBUG
+    org.springframework.web: INFO
+    com.alibaba.cloud.ai: DEBUG
