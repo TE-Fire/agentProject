@@ -1,18 +1,10 @@
 package com.example.springaialibaba.helloworld.controller;
 
 import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatOptions;
-
-import jakarta.servlet.http.HttpServletResponse;
-
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
-
-/**
- * 聊天控制器
- * 提供简单聊天、流式响应、多轮对话记忆功能
- */
 @RestController
 @RequestMapping("/helloworld")
 public class ChatController {
@@ -30,33 +22,23 @@ public class ChatController {
                             .build()
                 )
                 .build();
-    } 
+    }
 
-    /**
-     * 简单调用
-     * @param query
-     * @return
-     */
     @GetMapping("/simple/chat")
     public String simpleChat(@RequestParam(value = "query", defaultValue = "你好，能简单介绍一下自己吗?") String query) {
         return dashScopeChatClient.prompt(query).call().content();
     }
 
-    /**
-     * 流式调用
-     * @param query
-     * @param response
-     * @return
-     */
-    public Flux<String> streanChat(@RequestParam(value = "query", defaultValue = "你好，能简单介绍一下自己吗?") String query,
-            HttpServletResponse response) {
+    @GetMapping("/stream/chat")
+    public Flux<String> streamChat(@RequestParam(value = "query", defaultValue = "你好，能简单介绍一下自己吗?") String query,
+            jakarta.servlet.http.HttpServletResponse response) {
         response.setCharacterEncoding("UTF-8");
         return dashScopeChatClient.prompt(query).stream().content();
     }
 
     @GetMapping("/options/chat")
-     public Flux<String> optionsChat(
-            HttpServletResponse response,
+    public Flux<String> optionsChat(
+            jakarta.servlet.http.HttpServletResponse response,
             @RequestParam(value = "query", defaultValue = "你好，很高兴认识你，能简单介绍一下自己吗？") String query,
             @RequestParam(value = "topP", required = false) Double topP,
             @RequestParam(value = "temperature", required = false) Double temperature) {
